@@ -1,15 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
   // your code here
-  const form = document.querySelector('form')
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    addToDo(e.target.new_task_description.value);
-    e.target.reset();
-  });
+  let form = document.querySelector('form')
+  form.addEventListener('sumbit', (e) => {
+    e.preventDefault()
+    buildToDo(e.target ['new-task-description'].value)
+    form.reset()
+  })
 
-  function addToDo (task) {
-    let p = document.createElement("p")
-    p.textContent = `${task}`
-    document.querySelector("#tasks").appendChild(p)
+  function buildToDo(todo){
+    let p = document.createElement('p')
+    let btn = document.createElement('button')
+    btn.addEventListener('click', handleRemove)
+    btn.textContent='x'
+    p.textContent = `${todo}`
+    p.appendChild(btn)
+    document.querySelector('#list').appendChild(p)
   }
+
+  function handleRemove(e){
+    e.target.parentNode.remove()
+  }
+  
 });
